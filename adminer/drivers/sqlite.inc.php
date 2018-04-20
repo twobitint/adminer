@@ -179,7 +179,7 @@ if (isset($_GET["sqlite"]) || isset($_GET["sqlite2"])) {
 
 	}
 
-	if (class_exists("Min_SQLite")) {
+	if (class_exists("Adminer\Min_SQLite")) {
 		class Min_DB extends Min_SQLite {
 
 			function __construct() {
