@@ -1,7 +1,7 @@
 <?php
 // PDO can be used in several database drivers
 if (extension_loaded('pdo')) {
-	/*abstract*/ class Min_PDO extends PDO {
+	/*abstract*/ class Min_PDO extends \PDO {
 		var $_result, $server_info, $affected_rows, $errno, $error;
 		
 		function __construct() {
@@ -18,8 +18,8 @@ if (extension_loaded('pdo')) {
 			} catch (Exception $ex) {
 				auth_error(h($ex->getMessage()));
 			}
-			$this->setAttribute(13, array('Min_PDOStatement')); // 13 - PDO::ATTR_STATEMENT_CLASS
-			$this->server_info = @$this->getAttribute(4); // 4 - PDO::ATTR_SERVER_VERSION
+			$this->setAttribute(13, array('Min_PDOStatement')); // 13 - \PDO::ATTR_STATEMENT_CLASS
+			$this->server_info = @$this->getAttribute(4); // 4 - \PDO::ATTR_SERVER_VERSION
 		}
 		
 		/*abstract function select_db($database);*/
@@ -72,15 +72,15 @@ if (extension_loaded('pdo')) {
 		}
 	}
 	
-	class Min_PDOStatement extends PDOStatement {
+	class Min_PDOStatement extends \PDOStatement {
 		var $_offset = 0, $num_rows;
 		
 		function fetch_assoc() {
-			return $this->fetch(2); // PDO::FETCH_ASSOC
+			return $this->fetch(2); // \PDO::FETCH_ASSOC
 		}
 		
 		function fetch_row() {
-			return $this->fetch(3); // PDO::FETCH_NUM
+			return $this->fetch(3); // \PDO::FETCH_NUM
 		}
 		
 		function fetch_field() {

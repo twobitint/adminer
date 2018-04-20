@@ -6,7 +6,7 @@ if (!defined("DRIVER")) {
 	define("DRIVER", "server"); // server - backwards compatibility
 	// MySQLi supports everything, MySQL doesn't support multiple result sets, PDO_MySQL doesn't support orgtable
 	if (extension_loaded("mysqli")) {
-		class Min_DB extends MySQLi {
+		class Min_DB extends \MySQLi {
 			var $extension = "MySQLi";
 
 			function __construct() {
@@ -234,9 +234,9 @@ if (!defined("DRIVER")) {
 				$ssl = $adminer->connectSsl();
 				if ($ssl) {
 					$options = array(
-						PDO::MYSQL_ATTR_SSL_KEY => $ssl['key'],
-						PDO::MYSQL_ATTR_SSL_CERT => $ssl['cert'],
-						PDO::MYSQL_ATTR_SSL_CA => $ssl['ca'],
+						\PDO::MYSQL_ATTR_SSL_KEY => $ssl['key'],
+						\PDO::MYSQL_ATTR_SSL_CERT => $ssl['cert'],
+						\PDO::MYSQL_ATTR_SSL_CA => $ssl['ca'],
 					);
 				}
 				$this->dsn(
@@ -258,7 +258,7 @@ if (!defined("DRIVER")) {
 			}
 
 			function query($query, $unbuffered = false) {
-				$this->setAttribute(1000, !$unbuffered); // 1000 - PDO::MYSQL_ATTR_USE_BUFFERED_QUERY
+				$this->setAttribute(1000, !$unbuffered); // 1000 - \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY
 				return parent::query($query, $unbuffered);
 			}
 		}

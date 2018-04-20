@@ -1,4 +1,7 @@
 <?php
+
+namespace Adminer;
+
 /** Adminer Editor - Compact database editor
 * @link https://www.adminer.org/
 * @author Jakub Vrana, https://www.vrana.cz/

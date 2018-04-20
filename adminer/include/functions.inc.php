@@ -1,4 +1,5 @@
 <?php
+
 /** Get database connection
 * @return Min_DB
 */
