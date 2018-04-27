@@ -418,8 +418,7 @@ fetch_assoc(){return
 pg_fetch_assoc($this->_result);}function
 fetch_row(){return
 pg_fetch_row($this->_result);}function
-fetch_field(){$e=$this->_offset++;$J=new
-stdClass;if(function_exists('pg_field_table'))$J->orgtable=pg_field_table($this->_result,$e);$J->name=pg_field_name($this->_result,$e);$J->orgname=$J->name;$J->type=pg_field_type($this->_result,$e);$J->charsetnr=($J->type=="bytea"?63:0);return$J;}function
+fetch_field(){$e=$this->_offset++;$J=new\stdClass;if(function_exists('pg_field_table'))$J->orgtable=pg_field_table($this->_result,$e);$J->name=pg_field_name($this->_result,$e);$J->orgname=$J->name;$J->type=pg_field_type($this->_result,$e);$J->charsetnr=($J->type=="bytea"?63:0);return$J;}function
 __destruct(){pg_free_result($this->_result);}}}elseif(extension_loaded("pdo_pgsql")){class
 Min_DB
 extends
@@ -615,8 +614,7 @@ _convert($K){foreach((array)$K
 as$_=>$X){if(is_a($X,'OCI-Lob'))$K[$_]=$X->load();}return$K;}function
 fetch_assoc(){return$this->_convert(oci_fetch_assoc($this->_result));}function
 fetch_row(){return$this->_convert(oci_fetch_row($this->_result));}function
-fetch_field(){$e=$this->_offset++;$J=new
-stdClass;$J->name=oci_field_name($this->_result,$e);$J->orgname=$J->name;$J->type=oci_field_type($this->_result,$e);$J->charsetnr=(preg_match("~raw|blob|bfile~",$J->type)?63:0);return$J;}function
+fetch_field(){$e=$this->_offset++;$J=new\stdClass;$J->name=oci_field_name($this->_result,$e);$J->orgname=$J->name;$J->type=oci_field_type($this->_result,$e);$J->charsetnr=(preg_match("~raw|blob|bfile~",$J->type)?63:0);return$J;}function
 __destruct(){oci_free_statement($this->_result);}}}elseif(extension_loaded("pdo_oci")){class
 Min_DB
 extends
@@ -736,8 +734,7 @@ _convert($K){foreach((array)$K
 as$_=>$X){if(is_a($X,'DateTime'))$K[$_]=$X->format("Y-m-d H:i:s");}return$K;}function
 fetch_assoc(){return$this->_convert(sqlsrv_fetch_array($this->_result,SQLSRV_FETCH_ASSOC));}function
 fetch_row(){return$this->_convert(sqlsrv_fetch_array($this->_result,SQLSRV_FETCH_NUMERIC));}function
-fetch_field(){if(!$this->_fields)$this->_fields=sqlsrv_field_metadata($this->_result);$q=$this->_fields[$this->_offset++];$J=new
-stdClass;$J->name=$q["Name"];$J->orgname=$q["Name"];$J->type=($q["Type"]==1?254:0);return$J;}function
+fetch_field(){if(!$this->_fields)$this->_fields=sqlsrv_field_metadata($this->_result);$q=$this->_fields[$this->_offset++];$J=new\stdClass;$J->name=$q["Name"];$J->orgname=$q["Name"];$J->type=($q["Type"]==1?254:0);return$J;}function
 seek($E){for($u=0;$u<$E;$u++)sqlsrv_fetch($this->_result);}function
 __destruct(){sqlsrv_free_stmt($this->_result);}}}elseif(extension_loaded("mssql")){class
 Min_DB{var$extension="MSSQL",$_link,$_result,$server_info,$affected_rows,$error;function
