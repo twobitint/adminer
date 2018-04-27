@@ -578,7 +578,7 @@ if (isset($_GET["sqlite"]) || isset($_GET["sqlite2"])) {
 			return false;
 		}
 		if ($table != "") {
-			if ($originals && !queries("INSERT INTO " . table("adminer_$name") . " (" . implode(", ", $originals) . ") SELECT " . implode(", ", array_map('idf_escape', array_keys($originals))) . " FROM " . table($table))) {
+			if ($originals && !queries("INSERT INTO " . table("adminer_$name") . " (" . implode(", ", $originals) . ") SELECT " . implode(", ", array_map('Adminer\idf_escape', array_keys($originals))) . " FROM " . table($table))) {
 				return false;
 			}
 			$triggers = array();
@@ -723,7 +723,7 @@ if (isset($_GET["sqlite"]) || isset($_GET["sqlite2"])) {
 			if ($name == '') {
 				continue;
 			}
-			$return .= ";\n\n" . index_sql($table, $index['type'], $name, "(" . implode(", ", array_map('idf_escape', $index['columns'])) . ")");
+			$return .= ";\n\n" . index_sql($table, $index['type'], $name, "(" . implode(", ", array_map('Adminer\idf_escape', $index['columns'])) . ")");
 		}
 		return $return;
 	}
